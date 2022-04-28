@@ -1,8 +1,8 @@
 deducible:
-  handler: src/siniestro/app.handler
+  handler: src/Deducible/app.handler
   events:
     - http:
-        path: /deducible/obtener
+        path: /Deducible/obtener
         method: post
         integration: lambda
         authorizer: ${self:custom.authorizer}

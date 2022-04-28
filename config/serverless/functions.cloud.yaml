@@ -1,5 +1,5 @@
 deducible:
-  handler: src/deducible/app.handler
+  handler: src/Deducible/app.handler
   name: ${self:custom.regions.abrev.${opt:stage}}COM${opt:stage}DEDUCIBLEV1
   description: FUNCION PARA PROCESAR DATOS DEDUCIBLES DE TEXTO PLANO
   package:
