@@ -1,0 +1,49 @@
+service: ${self:custom.serviceName}
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  stage: ${opt:stage,'DESA'}
+  region: ${self:custom.regions.code.${opt:stage}}
+  memorySize: 2048
+  versionFunctions: false
+  logRetentionInDays: 3
+  role: ${self:custom.role.${opt:stage}}
+
+  tracing:
+    lambda: true
+
+  deploymentBucket:
+    name: ${self:custom.deploymentBucket.${opt:stage}}
+    serverSideEncryption: AES256
+
+  environment:
+    REGION: ${self:provider.region}
+    STAGE: ${self:provider.stage}
+    LOG_LEVEL: 'INFO'
+
+custom:
+  reducer:
+    ignoreMissing: true
+  functionsFile: ${opt:functionsFile, 'cloud'}
+  role: ${file(./config/serverless/common-custom-config.yaml):role}
+  deploymentBucket: ${file(./config/serverless/common-custom-config.yaml):deploymentBucket}
+  accountId: ${file(./config/serverless/common-custom-config.yaml):accountId}
+  name: DEDUCIBLES-RIMAC-EXPERTISE
+  serviceName: ${self:custom.name}-ACF-01
+  authorizer: ${file(./config/serverless/sls-helper.js):authorizer}
+  ssmRootPath: /${self:custom.name}/${self:provider.stage}
+
+  regions:
+    code: ${file(./config/serverless/common-custom-config.yaml):regions.code}
+    abrev: ${file(./config/serverless/common-custom-config.yaml):regions.abrev}
+
+plugins:
+  - serverless-offline
+
+package:
+  individually: true
+  exclude:
+    - node_modules/**
+
+functions: ${file(config/serverless/functions.${self:custom.functionsFile}.yaml)}

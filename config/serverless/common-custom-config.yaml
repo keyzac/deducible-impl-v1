@@ -1,0 +1,37 @@
+# API Gateway environment
+environments:
+  DESA: desa
+  TEST: test
+  MOCK: mock
+  PROD: prod
+
+# Regions code and abbreviation
+regions:
+  code:
+    DESA: us-east-2
+    TEST: us-east-2
+    MOCK: us-east-2
+    PROD: us-east-1
+  abrev:
+    DESA: UE2
+    TEST: UE2
+    MOCK: UE2
+    PROD: UE1
+
+# Account id
+accountId: 477542548955
+
+# Deployement bucket
+deploymentBucket:
+  DESA: ue1stgdesaas3prv001
+  TEST: ue1stgdesaas3prv001
+  MOCK: ue1stgdesaas3prv001
+  PROD: ue2stgas3pases001
+
+# Lambda's role
+role:
+  DESA: arn:aws:iam::${self:custom.accountId}:role/UE1SEGDESAIAMPCA001
+  TEST: arn:aws:iam::${self:custom.accountId}:role/UE1SEGDESAIAMPCA001
+  MOCK: TODOROLE
+  PROD: arn:aws:iam::${self:custom.accountId}:role/ROLE_BUSINESS_APIS_PROD
+

@@ -1,0 +1,15 @@
+deducible:
+  handler: src/siniestro/app.handler
+  events:
+    - http:
+        path: /deducible/obtener
+        method: post
+        integration: lambda
+        authorizer: ${self:custom.authorizer}
+        cors:
+          ${file(config/serverless/http-cors.yaml)}
+        request:
+          template:
+            application/json: ${file(config/serverless/request/obtenerDeducbile.vm)}
+        response:
+          ${file(config/serverless/http-response.yaml)}
