@@ -10,7 +10,7 @@
     "test-coverage": "jest --coverage",
     "test-watch": "jest --watch"
   },
-  "author": "Kevin",
+  "author": "Kevin Yzacupe",
   "devDependencies": {
     "@commitlint/cli": "8.3.5",
     "@commitlint/config-conventional": "8.3.4",
@@ -23,6 +23,10 @@
     "jest-cucumber": "3.0.1",
     "serverless": "~2.69.0",
     "serverless-offline": "^5.12.0"
+  },
+  "dependencies": {
+    "@rimac/core": "1.8.2",
+    "@rimac/common": "1.5.0"
   },
   "husky": {
     "hooks": {
