@@ -9,9 +9,7 @@ module.exports = {
     Logger.info(textoTaller);
 
     const textoDeducible = textoTaller.match(/\d{2}(\.\d{2})?%/gi)[0];
-    const deducible = parseInt(textoDeducible.replace('%', ''), 10);
-
-    return deducible;
+    return parseInt(textoDeducible.replace('%', ''), 10);
   },
 
   obtenerCopago(textoTaller) {
@@ -19,9 +17,7 @@ module.exports = {
     Logger.info(textoTaller);
 
     const textoCopago = textoTaller.match(/(US\$|S\/.)\s*\d+(.\d+)?/gi)[0];
-    const copago = parseInt(textoCopago.replace(/(US\$|S\/.)\s*/gi, ''), 10);
-
-    return copago;
+    return parseInt(textoCopago.replace(/(US\$|S\/.)\s*/gi, ''), 10);
   },
 
   obtenerTipo(textoTaller) {
@@ -72,9 +68,7 @@ module.exports = {
     Logger.info(textoTaller);
 
     const textoMoneda = textoTaller.match(/US\$|S\/./gi);
-    const moneda = DomainConstants.MONEDAS[textoMoneda[0]];
-
-    return moneda;
+    return DomainConstants.MONEDAS[textoMoneda[0]];
   }
 
 };
